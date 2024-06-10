@@ -1,0 +1,31 @@
+﻿using FluentValidation;
+using product_catalog.API.Requests;
+
+namespace product_catalog.API.FluentValidation.Validators;
+
+public class ChangeProductValidator : AbstractValidator<ChangeProductRequest>
+{
+    public ChangeProductValidator()
+    {
+        RuleFor(product => product.Id)
+            .GreaterThanOrEqualTo(1);
+
+        RuleFor(product => product.Title)
+            .NotEmpty();
+
+        RuleFor(product => product.Description)
+            .NotEmpty();
+
+        RuleFor(product => product.Price)
+            .GreaterThan(0);
+
+        RuleFor(product => product.GeneralNote)
+            .NotEmpty();
+
+        RuleFor(product => product.SpecialNote)
+            .NotEmpty();
+
+        RuleFor(product => product.CategoryId)
+            .GreaterThanOrEqualTo(1);
+    }
+}
